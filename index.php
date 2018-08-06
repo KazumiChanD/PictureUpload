@@ -1,4 +1,6 @@
+//hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument. da immer die höchste Datei angebegen wird und php über html steht, wird trotzdem php angegeben
 <!DOCTYPE html>
+//
 <html lang="de">
 <head>
     <title>Bilder hochladen</title>
@@ -7,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-    
+
 </head>
 
 <body>
@@ -30,7 +32,7 @@
 
         <section id="demo"></section>
 
-        <form action="datei" method="post" autocomplete="off">
+    <form action="/uploads" method="get" id="form1">
             <label>Titel des Bildes:</label>
             <input type="text" name="titel" maxlength="35">
 
@@ -38,10 +40,15 @@
             <input type="file" id="file" style="border: 1px solid black;
 					background: #ccccff">
 
-            <button type="submit"><a>Bild abschicken</a></button>
+        <button type="submit" form="form1" value="Submit"><a>Bild abschicken</a></button>
         </form>
 
         <p>Es sind nur Formate wie .jpg .gif und .png gültig</p>
+
+    <?php
+    echo "<pre>";
+print_r ( $file );
+?>
 </body>
 
 </html>
