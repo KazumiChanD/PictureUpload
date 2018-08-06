@@ -1,11 +1,30 @@
-//hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument. da immer die höchste Datei angebegen wird und php über html steht, wird trotzdem php angegeben
+//hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument, bzw wie der Browser es verarbeiten soll. da immer die höchste Datei angebegen wird und php über html steht, wird trotzdem php angegeben
 <!DOCTYPE html>
-//
+//html ist ein Tag mit dem gezeigt wird, das hier eine HTML- codierte Seite vorliegt
+//lang="de" erklärt den Sprachcode in der die Seite ausgegeben wird (meist landessprache)
 <html lang="de">
+//wird zwischen dem html und dem body tag gesetzt
+//es wird nicht auf der Webseite angezeigt, außer das title tag
+//hier werden die Meta Daten gelagert
+//sie liefern Informationen, steuern die Darstellung und stellen Beziehungen zwischen anderen Datein und Seiten her
 <head>
+    //hier wird der angezeigte Name der Website festgelegt
+    //er wird außerdem als Titelleiste des Tabs, als Standardname beim Lesezeichen (außer man nennt ihn um), im Verlauf des Browsers und als Überschrift von Einträgen in Suchmaschinen
+    //in " " steht der besagte angezeigte Text
+    //sollte nicht so lang sein (70 höchstens (bei Anzeige bei Google))
     <title>Bilder hochladen</title>
+    //meta enthält zusätzliche Informationen von anderen Daten
+    //sollen das verwalten des Dateiinhalts erleichtern
+    //setzt sich zumindest aus Attributen zu Eigenschaft und Inhalt zusammen
+    //charset legt die Zeichenkodierung für die Dateien fest
+    //utf-8 ist ein Unicode, der besonders für westliche Sprachen genutzt wird. Enthält deutsche Umlaute (ä, ü, ö ect.)
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    //meta enthält zusätzliche Informationen von anderen Daten
+    //viewport bezeichnet den Anzeigenbereich (für mobile Geräte wichtig)
+    //content
+    //initial-scale gibt den Zoom Wert an, 1.0 werden 1:1 dargestellt
+    //user-scalable=yes zeigt an ob zoomen möglich ist
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
