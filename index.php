@@ -103,7 +103,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     wird nur durch eine URL identifiziert
     gibt drei verschiedene Möglichkeiten
     alt gibt den alternativen Text an, wenn das Bild nicht angezeigt werden kann -->
-    <img id="rechts" src="https://cdn.pixabay.com/photo/2017/08/12/16/14/cat-2634641_960_720.png" alt="Hier soll eigentlich ein Hund sein"/>
+    <img id="rechts" src="https://i.imgur.com/X4KPi3Y.png" alt="Hier soll eigentlich ein Hund sein"/>
         <!-- img verknüfpt ein Bild in einer Html Seite
         es benötigt die Attribute src und alt
         id bedeutet identity
@@ -152,7 +152,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
     bei der ID wird zwischen Groß und Kleinschreibung unterschieden
     es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten-->
-    <form action="/uploads" method="get" id="form1">
+    <form method="get" id="form1">
             <!-- label definiert eine Bezeichnung für input
             wird für den Benutzer als nichts besonderes dargestellt
             das / beschreibt das Ende (Beispiel /label)-->
@@ -164,15 +164,17 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
             name gibt einen Namen für das Element an
             kann verwendet werden um mit Java darauf zu verweisen
             maxlength gibt die maximale Anzahl an Zeichen an, die im input zulässig sind -->
+        <label>
             <input type="text" name="titel" maxlength="35">
-            <!-- label definiert eine Bezeichnung für input
-            wird für den Benutzer als nichts besonderes dargestellt
-            type gibt den Typ des anzuzeigenden Elements an
-            der Standard Typ ist Text
-            file bedeutet zu deutsch Datei
-            das / beschreibt das Ende (Beispiel /type)
-            das / beschreibt das Ende (Beispiel /label)
-            type -->
+        </label>
+        <!-- label definiert eine Bezeichnung für input
+        wird für den Benutzer als nichts besonderes dargestellt
+        type gibt den Typ des anzuzeigenden Elements an
+        der Standard Typ ist Text
+        file bedeutet zu deutsch Datei
+        das / beschreibt das Ende (Beispiel /type)
+        das / beschreibt das Ende (Beispiel /label)
+        type -->
             <label for="file"><type="file"></type></label>
             <!-- file im Zusammenhang mit input, definiert ein file*select*field und einen Browse Button um Datein hoch zu laden
             type bezeichnet den Inhaltstyp
@@ -181,9 +183,8 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
             gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
             in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
             bei der ID wird zwischen Groß und Kleinschreibung unterschieden
-            style legt den Stil eines Elements fest
-             -->
-            <input type="file" id="file" style="">
+            -->
+            <input type="file" id="file">
 
         <button type="submit" form="form1" value="Submit"><a>Bild abschicken</a></button>
         </form>
@@ -191,8 +192,10 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <p>Es sind nur Formate wie .jpg .gif und .png gültig</p>
 
     <?php
-    echo "<pre>";
-print_r ( $file );
+    echo "uploads";
+    $file ="uploads";
+    print_r ( $file );
+    include ("auslese.php");
 ?>
 </body>
 
