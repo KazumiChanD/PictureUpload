@@ -1,5 +1,4 @@
-
-<?php
+<?php /** @noinspection PhpUnreachableStatementInspection */
 /* hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument
 in diesem Falle ist es PHP */
 $ordner = "uploads";
@@ -9,6 +8,23 @@ es muss nur mindestens ein Symbol enthalten
 es muss mit einem Bustaben oder einem unterstrich beginnen
 es gehen abgesehen von dem Unterstrich keine Sonderzeichen
 es wird zwischen Groß und Kleinschreibung unterschieden  */
+class MyClass
+/* class ist ein Schlüsselwort
+es kommt vor einfachen Klassendefinitionen
+kann jede Bezeichnung haben, vorausgesetzt es ist kein "PHP Wort"
+ein gültiger Klassenname beginnt mit einem Bustaben oder Unterstrich,
+gefolgt von einer beliebigen Anzahl an Bustaben, Ziffern oder Unterstrichen */
+{
+    public $public = "Public";
+    /* public ist eine Datenschutzebene, die bestimmt wo Atrribute geändert werden
+    oder welche Funktionen aufgerufen werden
+    $public ist eine Variable die beliebig genannt werden
+    schen dem " " kann alles stehen
+    muss nur mindestens ein Symbol enthalten
+    muss mit einem Bustaben oder einem unterstrich begin
+    gehen abgesehen von dem Unterstrich keine Sonderzeic
+    wird zwischen Groß und Kleinschreibung unterschieden */
+}
 $file = "/uploads";
 /* $file ist eine Variable die beliebig genannt werden kann
 zwischen dem " " kann alles stehen
@@ -35,7 +51,7 @@ es muss nur mindestens ein Symbol enthalten
 es muss mit einem Bustaben oder einem unterstrich beginnen
 es gehen abgesehen von dem Unterstrich keine Sonderzeichen
 es wird zwischen Groß und Kleinschreibung unterschieden */
-echo $bilder;
+echo "$bilder";
 /* echo gibt zum Beispiel einen oder mehrere String (ein String stellt eine Kette von Zeichen dar) aus
 $bilder ist eine Variable die beliebig genannt werden kann
 es muss nur mindestens ein Symbol enthalten

@@ -139,21 +139,28 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         bei der ID wird zwischen Groß und Kleinschreibung unterschieden
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         das / beschreibt das Ende (Beispiel /section) -->
-    <form method="get" id="form1">
+    <form action="/uploads" method="post" name="Formular" enctype="application/x-www-form-urlencoded">
     <!-- wird verwendet um Benutzereingaben zu sammeln
+    action definiert die Aktion die beim Übermitteln des Formulars ausgeführt werden soll
+    sendet normalerweise die Formulardaten an eine Webseite auf dem Server (die man selber angeben muss),
+    sobald der Benutzer auf die Schaltfläche klickt
+    wenn das action Attribut nicht angegeben wird, wird die Aktion auf die aktuelle Seite gesetzt
     method definiert die Aktion, die beim übermitteln des Formulars ausgeführt werden soll
-    get wird benutzt um Daten von einer angegeben Ressource anzufordern
-    Anforderungen können zwischengespeichert werden
-    Anfragen verbleiben im Browserverlauf
-    Anfragen können mit einem Lesezeichen versehen werden
-    Anfragen sollten niemals im Umgang mit sensiblen Daten verwendet werden
-    Anfragen haben Längenbeschränkungen
-    Requests werden nur zum Anfordern von Daten verwendet
-    id bedeutet identity
-    gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
-    in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #form1
-    bei der ID wird zwischen Groß und Kleinschreibung unterschieden
-    es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten-->
+    wird benutzt um vertrauliche oder persönliche Informationen zu enthalten
+    hat keine Größenbeschränkung und kann daher große Datenmengen versenden
+    die Formulareinreichungen können nicht als Lesezeichen gespeichert werden
+    anforderungen können zwischengespeichert werden
+    anfragen verbleiben im Browserverlauf
+    anfragen können mit einem Lesezeichen versehen werden
+    anfragen sollten niemals im Umgang mit sensiblen Daten verwendet werden
+    anfragen haben Längenbeschränkungen
+    requests werden nur zum Anfordern von Daten verwendet
+    für jedes Eingabefeld muss ein name Attribut gesetzt werden, ansonsten werden diese Daten des Eingabefelds nicht versendet
+    es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
+    enctype gibt an wie die Formulardaten beim Versenden an den Server codiert wird
+    kann nur bei der Methode POST verwendet werden
+    application/x-www-form-urlencoded
+    standardmäßig werden alle Zeichen vor dem senden codiert (Leerzeichen werden in „+“ Symbole und Sonderzeichen in ASCII HEX Werde umgewandelt)-->
             <label>Titel des Bildes:</label>
             <!-- label definiert eine Bezeichnung für input
             wird für den Benutzer als nichts besonderes dargestellt
@@ -191,17 +198,12 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         Dokument mit der Endung .php enden
         include verweißt auf ein anderes Dokument, was an dieser Stelle angezeigt wird
         in der Klammer ist die jeweilige Datei, es ist jede Art von Datei möglich -->
-        <form action="auslese.php" method="post" enctype="multipart/form-data"></form>
-        <!-- wird verwendet um Benutzereingaben zu sammeln
-        mit action wird eine Aktion ausgeführt, auslese.php ist die Datei wo die defninerte Aktion protokolliert ist
-        das dokument wird verarbeitet, gelesen und ins html Dokument eingebracht
-         -->
         <input type="file" id="file">
         <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
         file definiert den Typ als eine Datei -->
-        <button type="submit" form="form1" value="Submit"><a>Bild abschicken</a></button>
+        <button type="submit" form="form1" value="Submit">Bild abschicken</button>
         <!-- mit diesem Element werden anklickbare Schaltflächen erzeugt, die durch aktionen ausgelöst werden können.
         type bezeichnet den Inhaltstyp
         submit sorgt dafür das etwas gesendet werden soll
