@@ -1,0 +1,75 @@
+html {
+  background-image: linear-gradient(to top, #ccccff 10%, #ccfff2 50%);
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  font-size: 55px;
+  font-family: "Satisfy", cursive;
+  text-align: center;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#mitte {
+  float: top;
+  width: 200px;
+  height: auto;
+  margin-left: 20px;
+}
+
+#scrollbereich {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  z-index: 2;
+}
+
+#links {
+  float: left;
+  width: 300px;
+  height: auto;
+  margin-left: 20px;
+}
+
+#rechts {
+  float: right;
+  width: 300px;
+  height: auto;
+  margin-left: 20px;
+}
+
+p {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Indie Flower", cursive;
+  line-height: 2;
+  letter-spacing: 1px;
+}
+
+a:link {
+  color: green;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  background-color: #ccccff;
+}
+
+a:active {
+  color: yellow;
+}
