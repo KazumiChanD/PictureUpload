@@ -136,7 +136,7 @@ es wird zwischen Groß und Kleinschreibung unterschieden */
             es muss mit einem Bustaben oder einem unterstrich beginnen
             es gehen abgesehen von dem Unterstrich keine Sonderzeichen
             es wird zwischen Groß und Kleinschreibung unterschieden */
-            move_uploaded_file($filename, $destination);
+            move_uploaded_file($_FILES, "/uploads");
             /* move upload file verschiebt eine hochgeladene Datei an einem anderen Ort
             $filename ist eine Variable die beliebig genannt werden kann
             es muss nur mindestens ein Symbol enthalten
@@ -171,3 +171,4 @@ es wird zwischen Groß und Kleinschreibung unterschieden */
             es wird zwischen Groß und Kleinschreibung unterschieden   */
         }
     }
+    return true;

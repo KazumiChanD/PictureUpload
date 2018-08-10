@@ -139,7 +139,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         bei der ID wird zwischen Groß und Kleinschreibung unterschieden
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         das / beschreibt das Ende (Beispiel /section) -->
-    <form action="/uploads" method="post" name="Formular" enctype="application/x-www-form-urlencoded">
+    <form action="uploads" method="post" name="datei" enctype="application/x-www-form-urlencoded">
     <!-- wird verwendet um Benutzereingaben zu sammeln
     action definiert die Aktion die beim Übermitteln des Formulars ausgeführt werden soll
     sendet normalerweise die Formulardaten an eine Webseite auf dem Server (die man selber angeben muss),
@@ -168,7 +168,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <label>
         <!-- label definiert eine Bezeichnung für input
         wird für den Benutzer als nichts besonderes dargestellt -->
-            <input type="text" name="titel" maxlength="35">
+            <input type="text" name="datei" maxlength="35">
             <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
             wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
             type bezeichnet den Inhaltstyp
@@ -193,17 +193,17 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
             in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
             bei der ID wird zwischen Groß und Kleinschreibung unterschieden
             es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten-->
-        <?php include ("auslese.php"); ?>
+        <?php include("auslese.php"); ?>
         <!-- damit wird dem Dokument mitgeteilt das es in einer anderen Art codieren muss, dadurch muss das ursprüngliche html
         Dokument mit der Endung .php enden
         include verweißt auf ein anderes Dokument, was an dieser Stelle angezeigt wird
         in der Klammer ist die jeweilige Datei, es ist jede Art von Datei möglich -->
-        <input type="file" id="file">
+        <input type="file" name="datei" id="file">
         <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
         file definiert den Typ als eine Datei -->
-        <button type="submit" form="form1" value="Submit">Bild abschicken</button>
+        <button type="submit" value="Submit">Bild abschicken</button>
         <!-- mit diesem Element werden anklickbare Schaltflächen erzeugt, die durch aktionen ausgelöst werden können.
         type bezeichnet den Inhaltstyp
         submit sorgt dafür das etwas gesendet werden soll
