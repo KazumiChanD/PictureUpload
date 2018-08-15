@@ -184,7 +184,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         das / beschreibt das Ende (Beispiel /type)
         das / beschreibt das Ende (Beispiel /label) -->
         <input type="file" name="bilder"><br>
-        <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
+        <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten auswählen kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
         file definiert den Typ als eine Datei -->
@@ -203,19 +203,6 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
         die Zeichen innerhalb der > < sind der angezeigte Text -->
-
-    <!-- php sorgt dafür das dieser Teil (bis ?>) php Funktionen aktivieren kann
-    echo gibt etwas an dieser Stelle auf der Website wieder (es können Bilder, Texte, Links, Fehlermeldungen ect. sein
-    zwischen ' ' Steht der angezeigte Text
-    a sind tags, mit denen man in der css oder javascript datei diese bearbeiten oder verschönern kann
-    href gibt die url oder den Pfad an, auf die/den verwiesen wird
-    uploads ist der besagte Pfad bzw. Ordner
-    beim klicken im Browser auf das besagte Wort, öffnet sich der besagte Pfad bzw die Seite -->
 </body>
-<!-- beinhaltet den gesamten anzuzeigenden Inhalt
-sorgt für eine Dokumentenstruktur
-das / beschreibt das Ende (Beispiel /body) und schließt damit das Dokument -->
+
 </html>
-<!-- html ist ein Tag mit dem gezeigt wird, das hier eine HTML- codierte Seite vorliegt
-das / beschreibt das Ende (Beispiel /html) und schließt damit das Dokument -->
-<!-- mithilfe von java script das bild anzeigen lassen anstatt von href! -->

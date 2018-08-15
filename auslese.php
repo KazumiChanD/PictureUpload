@@ -1,6 +1,4 @@
 <?php
-/* hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument
-in diesem Falle ist es PHP */
 $uploaddir = './uploads/';
 /* $uploaddir ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von =' ' definiert */
 $uploadfile = $uploaddir . basename($_FILES['bilder']['name']);
