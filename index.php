@@ -86,8 +86,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         enthält meistens mehrere Überschriftelemte (h1- h6), Logo oder Symbol und Autoreniformationen
         kann nicht innerhalb eines footer, adresse oder eines anderen header plaziert werden
         das / beschreibt das Ende und ist zwingend erforderlich (Beispiel /header) -->
-        <p> Lorem ipsum dolor sit amet, aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            Duis autem vel eum  </p>
+        <p> Lorem ipsum dolor sit amet, aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum  </p>
         <!-- p dient zur Gliederung des Textes
         sorgt für einen Absatz, da Browser Umbrüche in Dokumente ignorieren
         es umfasst einen Textblock, welcher auf der Seite angezeigt wird
@@ -139,7 +138,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         bei der ID wird zwischen Groß und Kleinschreibung unterschieden
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         das / beschreibt das Ende (Beispiel /section) -->
-    <form action="uploads" method="post" name="datei" enctype="application/x-www-form-urlencoded">
+    <form action="auslese.php" method="post" name="datei" enctype="multipart/form-data">
     <!-- wird verwendet um Benutzereingaben zu sammeln
     action definiert die Aktion die beim Übermitteln des Formulars ausgeführt werden soll
     sendet normalerweise die Formulardaten an eine Webseite auf dem Server (die man selber angeben muss),
@@ -168,9 +167,9 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <label>
         <!-- label definiert eine Bezeichnung für input
         wird für den Benutzer als nichts besonderes dargestellt -->
-            <input type="text" name="datei" maxlength="35">
+            <input type="text" name="beschreibung" maxlength="100">
             <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
-            wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
+            wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer Angaben machen oder eingeben können
             type bezeichnet den Inhaltstyp
             text wird in einem lesbaren Textzeichenformat angezeigt
             name gibt einen Namen für das Element an
@@ -184,21 +183,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         file bedeutet zu deutsch Datei
         das / beschreibt das Ende (Beispiel /type)
         das / beschreibt das Ende (Beispiel /label) -->
-            <label for="file"><type="file"></type></label>
-            <!-- file im Zusammenhang mit input, definiert ein file*select*field und einen Browse Button um Datein hoch zu laden
-            type bezeichnet den Inhaltstyp
-            file definiert den Typ als eine Datei
-            id bedeutet identity
-            gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
-            in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
-            bei der ID wird zwischen Groß und Kleinschreibung unterschieden
-            es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten-->
-        <?php include("auslese.php"); ?>
-        <!-- damit wird dem Dokument mitgeteilt das es in einer anderen Art codieren muss, dadurch muss das ursprüngliche html
-        Dokument mit der Endung .php enden
-        include verweißt auf ein anderes Dokument, was an dieser Stelle angezeigt wird
-        in der Klammer ist die jeweilige Datei, es ist jede Art von Datei möglich -->
-        <input type="file" name="datei" id="file">
+        <input type="file" name="bilder"><br>
         <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten eingeben kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
@@ -218,6 +203,14 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
         die Zeichen innerhalb der > < sind der angezeigte Text -->
+
+    <!-- php sorgt dafür das dieser Teil (bis ?>) php Funktionen aktivieren kann
+    echo gibt etwas an dieser Stelle auf der Website wieder (es können Bilder, Texte, Links, Fehlermeldungen ect. sein
+    zwischen ' ' Steht der angezeigte Text
+    a sind tags, mit denen man in der css oder javascript datei diese bearbeiten oder verschönern kann
+    href gibt die url oder den Pfad an, auf die/den verwiesen wird
+    uploads ist der besagte Pfad bzw. Ordner
+    beim klicken im Browser auf das besagte Wort, öffnet sich der besagte Pfad bzw die Seite -->
 </body>
 <!-- beinhaltet den gesamten anzuzeigenden Inhalt
 sorgt für eine Dokumentenstruktur
@@ -225,3 +218,4 @@ das / beschreibt das Ende (Beispiel /body) und schließt damit das Dokument -->
 </html>
 <!-- html ist ein Tag mit dem gezeigt wird, das hier eine HTML- codierte Seite vorliegt
 das / beschreibt das Ende (Beispiel /html) und schließt damit das Dokument -->
+<!-- mithilfe von java script das bild anzeigen lassen anstatt von href! -->
