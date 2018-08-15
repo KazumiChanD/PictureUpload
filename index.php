@@ -1,15 +1,6 @@
 <!DOCTYPE html>
-<!-- hier wird festgelegt, um was für eine Datei Art es sich handelt in dem Dokument,
-bzw wie der Browser es verarbeiten soll. da immer die höchste Datei angebegen wird und php über html steht, wird trotzdem php angegeben -->
 <html lang="de">
-<!-- html ist ein Tag mit dem gezeigt wird, das hier eine HTML- codierte Seite vorliegt
-lang="de" erklärt den Sprachcode in der die Seite ausgegeben wird (meist landessprache) -->
 <head>
-    <!-- wird zwischen dem html und dem body tag gesetzt
-    es wird nicht auf der Webseite angezeigt, außer das title tag
-    hier werden die Meta Daten gelagert
-    es sorgt für eine Dokumentstruktur
-    sie liefern Informationen, steuern die Darstellung und stellen Beziehungen zwischen anderen Datein und Seiten her -->
     <title>Bilder hochladen</title>
     <!-- hier wird der angezeigte Name der Website festgelegt
     er wird außerdem als Titelleiste des Tabs, als Standardname beim Lesezeichen (außer man nennt ihn um),
@@ -46,15 +37,7 @@ lang="de" erklärt den Sprachcode in der die Seite ausgegeben wird (meist landes
     href gibt die url der Seite an, auf die verwiesen wird
     gibt Beziehungen zwischen dem aktuellen und einem anderen Dokument an -->
 </head>
-<!-- wird zwischen dem html und dem body tag gesetzt
-es wird nicht auf der Webseite angezeigt, außer das title tag
-hier werden die Meta Daten gelagert
-sie liefern Informationen, steuern die Darstellung und stellen Beziehungen zwischen anderen Datein und Seiten her
-es sorgt für eine Dokumentenstruktur
-das / beschreibt das Ende und ist zwingend erforderlich (Beispiel /head) -->
 <body>
-<!-- beinhaltet den gesamten anzuzeigenden Inhalt
-sorgt für eine Dokumentenstruktur -->
 <div id="scrollbereich">
 <!-- schließt mehrere Elemte in einem gemeinsamen Bereich ein
 es sorgt dafür das der Inhalt in einer neuen Zeile erscheint
@@ -138,7 +121,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         bei der ID wird zwischen Groß und Kleinschreibung unterschieden
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         das / beschreibt das Ende (Beispiel /section) -->
-    <form action="auslese.php" method="post" name="datei" enctype="multipart/form-data">
+    <form action="save.php" method="post" name="datei" enctype="multipart/form-data">
     <!-- wird verwendet um Benutzereingaben zu sammeln
     action definiert die Aktion die beim Übermitteln des Formulars ausgeführt werden soll
     sendet normalerweise die Formulardaten an eine Webseite auf dem Server (die man selber angeben muss),
@@ -203,6 +186,8 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
         die Zeichen innerhalb der > < sind der angezeigte Text -->
+    <?php include ("indextest.php");
+    ?>
 </body>
 
 </html>
