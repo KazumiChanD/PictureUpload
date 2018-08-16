@@ -186,8 +186,57 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
         die Zeichen innerhalb der > < sind der angezeigte Text -->
-    <?php include ("indextest.php");
-    ?>
+
+    <ul id="galerie">
+        <!-- ul ist eine ungeordnete liste
+        id bedeutet identity
+        gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
+        in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
+        bei der ID wird zwischen Groß und Kleinschreibung unterschieden
+        es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten -->
+    <?php
+    $ordner = "uploads";
+    /*  */
+    $allebilder = scandir($ordner);
+    /* Listet Dateien und Verzeichnisse sortiert auf
+    scandir gibt ein Array von Dateien und Verzeichnissen des angebgen Verzeichnisses zurück
+    Einzeldateien werden dabei in der Variabel abgelegt */
+    foreach ($allebilder as $bild) {
+    /* foreach funktionieren nur bei Arrays
+    werden verwendet um jeden Schlüssel/Wert Paar in einem Array zu durchlaufen */
+        $bildinfo = pathinfo($ordner . "/" . $bild);
+        /* gibt ein Array zurück, das Informationen über einen Pfad enthält */
+        $size = ceil(filesize($ordner . "/" . $bild) / 1024);
+        /* filesize Gibt die Größe der angegebgen Datei zurück
+        diese Funktion gibt die Dateigröße in Bytes bei Erfolg oder false bei Fehler zurück
+        das  Ergebnis dieser Funktion wird zwischen gespeichert */
+        if ($bild != "." && $bild != ".." && $bild != "_notes" && $bildinfo['basename'] != "Thumbs.db") {
+        /* if führt einen Code aus, wenn eine Bedingung wahr ist
+        != bedeutet ungleich */
+            ?>
+            <li>
+            <!-- li erzeugt eine geordnetete Liste -->
+                <a href="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>">
+                <!-- a definiert einen Hyperlink, mit dem von einer zur anderen verlinkt wird
+                href gibt das Ziel der Verknüpfung an
+                echo gibt etwas wieder -->
+                    <img src="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>" width="300" alt="Vorschau"/></a>
+                    <!-- img src markiert ein Bild
+                    damit kann man die URL angeben
+                    width gibt die Höhe an
+                    alt gibt eine Alternative an -->
+                <span><?php echo $bildinfo['filename']; ?> (<?php echo $size; ?>kb)</span>
+                <!-- span (überspannen) kann Texte und andere Inline Elemente enthalten
+                 ist dafür das man es mit css formatieren kann -->
+            </li>
+
+            <?php
+        };
+    };
+        ?>
+
+    </ul>
+
 </body>
 
 </html>
