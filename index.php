@@ -179,7 +179,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     <!-- wird verwendet um Benutzereingaben zu sammeln
     das / beschreibt das Ende (Beispiel /form) und schließt damit das Dokument -->
     </section>
-    <footer>
+    <section>
         <p>Es sind nur Formate wie .jpg, .jpeg und .png gültig</p>
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
@@ -252,7 +252,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         ?>
 
     </ul>
-    </footer>
+    </section>
 </div>
 </body>
 
