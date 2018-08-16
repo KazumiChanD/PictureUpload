@@ -47,22 +47,18 @@ gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
 in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
 bei der ID wird zwischen Groß und Kleinschreibung unterschieden
 es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten -->
-        <header>
+        <section id="demo">
         <!-- beinhaltet den sichtbaren Kopfteil einer Website oder eines Teils einer Seite
         wird für einleitende Inhalte oder Navigationslink verwendet
         kann mehrmals im Dokument genutzt werden
         enthält meistens mehrere Überschriftelemte (h1- h6), Logo oder Symbol und Autoreniformationen
         kann nicht innerhalb eines footer, adresse oder eines anderen header plaziert werden -->
-            <h2><strong>Speicher hier die Bilder deiner Lieblinge</strong></h2>
+            <h2>Speicher hier die Bilder deiner Lieblinge</h2>
             <!-- h2 definiert eine Überschrift
             es gibt 6 verschiedene die sich durch die Zahl hinter dem h unterscheiden (Beispiel h2)
             h1 definiert die wichtigste Überschrift
-            strong formatiert Text in einem Dokument
-            es definiert wichtigen Text
-            es ist ein Phrasen tag
-            phrase bedeutet im deutschen sowas wie Satz oder Ausdruck
             mit / wird der tag geschloßen (Beispiel /strong) -->
-        </header>
+
         <!-- beinhaltet den sichtbaren Kopfteil einer Website oder eines Teils einer Seite
         wird für einleitende Inhalte oder Navigationslink verwendet
         kann mehrmals im Dokument genutzt werden
@@ -109,9 +105,9 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         src (englisch source für Quelle)
         wird nur durch eine URL identifiziert
-        gibt drei verschiedene Möglichkeiten
+        es gibt drei verschiedene Möglichkeiten
         alt gibt den alternativen Text an, wenn das Bild nicht angezeigt werden kann -->
-        <section id="demo"></section>
+        </section>
         <!-- section bedeutet sowas wie Abschnitt
         sorgt für eine Seitenstruktur
         definiert bestimmte Abschnitte des Dokuemntes
@@ -121,6 +117,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         bei der ID wird zwischen Groß und Kleinschreibung unterschieden
         es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
         das / beschreibt das Ende (Beispiel /section) -->
+    <section>
     <form action="save.php" method="post" name="datei" enctype="multipart/form-data">
     <!-- wird verwendet um Benutzereingaben zu sammeln
     action definiert die Aktion die beim Übermitteln des Formulars ausgeführt werden soll
@@ -141,8 +138,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
     enctype gibt an wie die Formulardaten beim Versenden an den Server codiert wird
     kann nur bei der Methode POST verwendet werden
-    application/x-www-form-urlencoded
-    standardmäßig werden alle Zeichen vor dem senden codiert (Leerzeichen werden in „+“ Symbole und Sonderzeichen in ASCII HEX Werde umgewandelt)-->
+    multipart/form-data = überträgt den Namen und die Datei selbst -->
             <label>Titel des Bildes:</label>
             <!-- label definiert eine Bezeichnung für input
             wird für den Benutzer als nichts besonderes dargestellt
@@ -166,7 +162,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         file bedeutet zu deutsch Datei
         das / beschreibt das Ende (Beispiel /type)
         das / beschreibt das Ende (Beispiel /label) -->
-        <input type="file" name="bilder"><br>
+        <input type="file" name="bild"><br>
         <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten auswählen kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
@@ -182,21 +178,21 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     </form>
     <!-- wird verwendet um Benutzereingaben zu sammeln
     das / beschreibt das Ende (Beispiel /form) und schließt damit das Dokument -->
-        <p>Es sind nur Formate wie .jpg .gif und .png gültig</p>
+    </section>
+    <footer>
+        <p>Es sind nur Formate wie .jpg, .jpeg und .png gültig</p>
         <!-- p sorgen für Textstrukturierungen
         sind Absätze, da Zeilenumbrüche vom Browser nicht unterstützt werden
         die Zeichen innerhalb der > < sind der angezeigte Text -->
-
     <ul id="galerie">
-        <!-- ul ist eine ungeordnete liste
-        id bedeutet identity
-        gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
-        in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
-        bei der ID wird zwischen Groß und Kleinschreibung unterschieden
-        es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten -->
+    <!-- ul ist eine ungeordnete liste
+    id bedeutet identity
+    gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
+    in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
+    bei der ID wird zwischen Groß und Kleinschreibung unterschieden
+    es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten -->
     <?php
     $ordner = "uploads";
-    /*  */
     $allebilder = scandir($ordner);
     /* Listet Dateien und Verzeichnisse sortiert auf
     scandir gibt ein Array von Dateien und Verzeichnissen des angebgen Verzeichnisses zurück
@@ -205,13 +201,24 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     /* foreach funktionieren nur bei Arrays
     werden verwendet um jeden Schlüssel/Wert Paar in einem Array zu durchlaufen */
         $bildinfo = pathinfo($ordner . "/" . $bild);
-        /* gibt ein Array zurück, das Informationen über einen Pfad enthält */
+        /* gibt ein Array zurück, das Informationen über einen Pfad enthält
+        Folgende Variablen stehen dann zur Verfügung
+        filename = Dateinamen ohne Dateiendung
+        dirname = Verzeichnisname
+        extension = Dateityp -/endung
+        basename = voller Dateiname mit Dateiendung */
         $size = ceil(filesize($ordner . "/" . $bild) / 1024);
-        /* filesize Gibt die Größe der angegebgen Datei zurück
+        /* ceil rundet auf
+        filesize Gibt die Größe der angegebgen Datei zurück
         diese Funktion gibt die Dateigröße in Bytes bei Erfolg oder false bei Fehler zurück
-        das  Ergebnis dieser Funktion wird zwischen gespeichert */
-        if ($bild != "." && $bild != ".." && $bild != "_notes" && $bildinfo['basename'] != "Thumbs.db") {
+        das  Ergebnis dieser Funktion wird zwischen gespeichert
+        Pfad zu der Datei
+        / ist ein Verzeichnistrennzeichnen
+        . ist ein Verknüpfungsoperator, der Zeichenketten miteinander verbindet
+        1024 = Kb , 1048576 = Mb , 1073741824 = Gb */
+        if ($bild != "." && $bild != ".." && $bild && $bildinfo['basename'] ){
         /* if führt einen Code aus, wenn eine Bedingung wahr ist
+        es wird verhindert das ordner und unterordner angezeigt werden
         != bedeutet ungleich */
             ?>
             <li>
@@ -219,10 +226,19 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
                 <a href="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>">
                 <!-- a definiert einen Hyperlink, mit dem von einer zur anderen verlinkt wird
                 href gibt das Ziel der Verknüpfung an
-                echo gibt etwas wieder -->
+                echo gibt etwas wieder
+                dirname ist der Verzeichnisname
+                / ist ein Verzeichnistrennzeichnen
+                . ist ein Verknüpfungsoperator, der Zeichenketten miteinander verbindet
+                basename ist der volle Dateiname mit Dateiendung -->
                     <img src="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>" width="300" alt="Vorschau"/></a>
                     <!-- img src markiert ein Bild
                     damit kann man die URL angeben
+                    echo gibt etwas wieder
+                    dirname ist der Verzeichnisname
+                    / ist ein Verzeichnistrennzeichnen
+                    . ist ein Verknüpfungsoperator, der Zeichenketten miteinander verbindet
+                    basename ist der volle Dateiname mit Dateiendung
                     width gibt die Höhe an
                     alt gibt eine Alternative an -->
                 <span><?php echo $bildinfo['filename']; ?> (<?php echo $size; ?>kb)</span>
@@ -236,7 +252,8 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         ?>
 
     </ul>
-
+    </footer>
+</div>
 </body>
 
 </html>
