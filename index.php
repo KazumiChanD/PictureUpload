@@ -47,18 +47,19 @@ gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
 in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
 bei der ID wird zwischen Groß und Kleinschreibung unterschieden
 es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten -->
-        <section id="demo">
-        <!-- beinhaltet den sichtbaren Kopfteil einer Website oder eines Teils einer Seite
-        wird für einleitende Inhalte oder Navigationslink verwendet
-        kann mehrmals im Dokument genutzt werden
-        enthält meistens mehrere Überschriftelemte (h1- h6), Logo oder Symbol und Autoreniformationen
-        kann nicht innerhalb eines footer, adresse oder eines anderen header plaziert werden -->
+    <header>
+    <!-- beinhaltet den sichtbaren Kopfteil einer Website oder eines Teils einer Seite
+    wird für einleitende Inhalte oder Navigationslink verwendet
+    kann mehrmals im Dokument genutzt werden
+    enthält meistens mehrere Überschriftelemte (h1- h6), Logo oder Symbol und Autoreniformationen
+    kann nicht innerhalb eines footer, adresse oder eines anderen header plaziert werden -->
             <h2>Speicher hier die Bilder deiner Lieblinge</h2>
             <!-- h2 definiert eine Überschrift
             es gibt 6 verschiedene die sich durch die Zahl hinter dem h unterscheiden (Beispiel h2)
             h1 definiert die wichtigste Überschrift
             mit / wird der tag geschloßen (Beispiel /strong) -->
-
+    </header>
+        <section id="demo">
         <!-- beinhaltet den sichtbaren Kopfteil einer Website oder eines Teils einer Seite
         wird für einleitende Inhalte oder Navigationslink verwendet
         kann mehrmals im Dokument genutzt werden
@@ -162,11 +163,12 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
         file bedeutet zu deutsch Datei
         das / beschreibt das Ende (Beispiel /type)
         das / beschreibt das Ende (Beispiel /label) -->
-        <input type="file" name="bild"><br>
+        <input type="file" name="bild" required><br>
         <!-- input gibt ein Eingabefeld an, in das der Benutzer Daten auswählen kann
         wird in form verwendet um Eingabesteuerelemte zu erklären, mit denen Benutzer angaben oder eingeben können
         type bezeichnet den Inhaltstyp
-        file definiert den Typ als eine Datei -->
+        file definiert den Typ als eine Datei
+        required zeigt an, das ein Eingabefeld ausgefüllt werden muss und versendet vorher nicht das Dokument -->
         <button type="submit" value="Submit">Bild abschicken</button>
         <!-- mit diesem Element werden anklickbare Schaltflächen erzeugt, die durch aktionen ausgelöst werden können.
         type bezeichnet den Inhaltstyp
@@ -231,7 +233,7 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
                 / ist ein Verzeichnistrennzeichnen
                 . ist ein Verknüpfungsoperator, der Zeichenketten miteinander verbindet
                 basename ist der volle Dateiname mit Dateiendung -->
-                    <img src="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>" width="300" alt="Vorschau"/></a>
+                    <img src="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>" width="400" alt="Vorschau"/></a>
                     <!-- img src markiert ein Bild
                     damit kann man die URL angeben
                     echo gibt etwas wieder

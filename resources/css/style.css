@@ -50,6 +50,13 @@ html, body {
   margin-left: 20px;
 }
 
+a {
+  float: top;
+  width: 300px;
+  height: auto;
+  border: 2px #1a1a1a;
+}
+
 p {
   font-size: 20px;
   font-weight: bold;
