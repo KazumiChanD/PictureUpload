@@ -65,13 +65,22 @@ es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect entha
     kann nicht innerhalb eines footer, adresse oder eines anderen header plaziert werden
     das / beschreibt das Ende und ist zwingend erforderlich (Beispiel /header) -->
     </header>
-    <!-- p dient zur Gliederung des Textes
-    sorgt für einen Absatz, da Browser Umbrüche in Dokumente ignorieren
-    es umfasst einen Textblock, welcher auf der Seite angezeigt wird
-    in diesem Falle ist es ein generierter Text namens Lorem Ipsum
-    das / beschreibt das Ende (Beispiel /p) -->
+    <!-- section bedeutet sowas wie Abschnitt
+    sorgt für eine Seitenstruktur
+    definiert bestimmte Abschnitte des Dokuemntes
+    id bedeutet identity
+    gibt eine eindeutige ID, mithilfe CSS und JavaScript verwendet werden kann
+    in CSS muss damit die ID ausgewählt wird, ein # vor, Beispiel #scrollbereich
+    bei der ID wird zwischen Groß und Kleinschreibung unterschieden
+    es muss mindestens ein Zeichen und darf keine Leerzeichen, Tabulatoren ect enthalten
+    das / beschreibt das Ende (Beispiel /section) -->
     <section id="demo">
-        <!-- Ist ein Platzhalter namens Lorem Ipsum -->
+        <!-- Ist ein Platzhalter namens Lorem Ipsum
+        p dient zur Gliederung des Textes
+        sorgt für einen Absatz, da Browser Umbrüche in Dokumente ignorieren
+        es umfasst einen Textblock, welcher auf der Seite angezeigt wird
+        in diesem Falle ist es ein generierter Text namens Lorem Ipsum
+        das / beschreibt das Ende (Beispiel /p)-->
         <p> Lorem ipsum dolor sit amet, aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
             ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
             dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
