@@ -17,6 +17,12 @@
 <body>
 <!-- schließt den scollbereich ein, welcher in css definiert wurde -->
 <div id="scrollbereich">
+    <?php
+    /* damit werden alle Fehler angezeigt */
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'OFF');
+    ini_set('error_log', 'logfile.txt');
+    ?>
     <header>
         <!-- gibt den sichtbaren Text als Überschrift aus -->
         <h2>Speicher hier die Bilder deiner Lieblinge</h2>
@@ -31,12 +37,13 @@
         <!-- zeigt auf der rechten Seite der Website, durch der definition in css, das Bild an -->
         <img id="rechts" src="https://i.imgur.com/X4KPi3Y.png" alt="Hier soll eigentlich ein Hund sein"/>
         <!-- zeigt auf der linken Seite der Website, durch der Definition in css, das Bild an -->
-        <img id="links" src="http://ekladata.com/-WzPJzH8EGmgAJKt4VJ4mQp7boI.png" alt="Hier soll eigentlich eine Katze sein">
+        <img id="links" src="http://ekladata.com/-WzPJzH8EGmgAJKt4VJ4mQp7boI.png"
+             alt="Hier soll eigentlich eine Katze sein">
         <!-- zeigt unterhalb des Platzhalters auf der Website in der Mitte, durch der Definition in css, das Bild an -->
         <img id="mitte" src="http://pluspng.com/img-png/hamster-png-hd-mouse-animal-free-png-image-1250.png"
              alt="Hier soll eigentlich ein Hamster sein">
     </section>
-<!-- ein neuer Abschnitt für das Formular -->
+    <!-- ein neuer Abschnitt für das Formular -->
     <section>
         <!-- das Formular und die Daten werden an die save.php datei versendet und dort weiter verarbeitet -->
         <form action="save.php" method="post" name="datei" enctype="multipart/form-data">

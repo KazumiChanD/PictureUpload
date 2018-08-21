@@ -1,7 +1,8 @@
 <?php
 /* damit werden alle Fehler angezeigt */
-error_reporting(-1);
-ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 'OFF');
+ini_set('error_log', 'logfile.txt');
 /* gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable */
 $uploaddir = './uploads/';
 /* es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus */
@@ -28,7 +29,7 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
         exit;
     }
 }
-/* wenn es eine der Dateiendungen an, wird ein $_GET Parameter gesetzt und auf die Seite verwiesen */
+/* wenn es eine der Dateiendungen hat, wird ein $_GET Parameter gesetzt und auf die Seite verwiesen */
 header('Location: index.php?saveOK=1');
 
 
