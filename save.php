@@ -2,43 +2,33 @@
 /* damit werden alle Fehler angezeigt */
 error_reporting(-1);
 ini_set('display_errors', 1);
-/* $uploaddir ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von =' ' definiert */
+/* gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable */
 $uploaddir = './uploads/';
-/* if führt einen Code aus, wenn eine Bedingung wahr ist
-file_exists prüft ob das Verzeichnis, Dateipfad oder Datei existiert
-$uploaddir ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von =' ' definiert
-is_readable prüft ob eine Datei existiert und lesbar ist
-is_writeable prüft ob in eine Datei oder ein Verzeichnis schreibbar ist */
+/* es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus */
 if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir)) {
 
-    /* $uploadfile ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von = definiert
-    . basename gibt den letzten Namensteil einer Pfadangabe zurück */
+    /* das gibt aus dem Verzeichnis, mit den ids aus der index.php, Dateiart und Dateiname einer Datei raus */
     $uploadfile = $uploaddir . basename($_FILES['bild']['name']);
-    /* $pathArray ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von = definiert
-    pathinfo gibt die Pfadinformationen der in () stehenden Verzeichnis oder Datei an */
+    /* gibt den Dateipfad wieder */
     $pathArray = pathinfo($uploadfile);
-    /* $extension ist eine Variable, die beliebig genannt werden kann, sie wird mithilfe von = definiert */
+    /* es wird die endung von dem Dateipfad abgetrennt */
     $extension = $pathArray['extension'];
-    /* es wird nach den string gesucht*/
+    /* es wird nach der Dateiendung gesucht und wenn eine davon existiert, wird es weiter verarbeitet */
     $allowedExtensions = array('png', 'jpeg', 'jpg', 'gif');
-    /* es wird überprüft das der Nagel ($extension) nicht im Heuhaufen ($allowedExtensions) existiert */
+    /* wird keine der Dateiendungen gefunden, wird ein $_GET Parameter gesetzt */
     if (!in_array($extension, $allowedExtensions)) {
-        /* Es wird auf die andere Seite verweisen */
+        /* und es wird auf die andere Seite verwiesen */
         header('Location: index.php?wrongExtension=1');
-        /* schließt die Funktion */
         exit;
     }
-    /* move_uploaded_file verschiebt eine hochgeladene Datei, an einen anderen Speicherort (muss angegeben werden)
-    funktioniert nur bei Dateien, die über HTTP POST hochgeladen wurde
-    wenn die Zieldatei schon existiert wird sie überschrieben */
+    /* wird die hochgeladene Datei nicht verschoben, wird ein $_GET Parameter gesetzt */
     if (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
-        /* verweist auf die andere Seite */
+        /* und es wird auf die andere Seite verwiesen */
         header('Location: index.php?saveError=1');
-        /* beendet die Funktion */
         exit;
     }
 }
-/* verweist auf die andere Seite */
+/* wenn es eine der Dateiendungen an, wird ein $_GET Parameter gesetzt und auf die Seite verwiesen */
 header('Location: index.php?saveOK=1');
 
 

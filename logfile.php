@@ -9,7 +9,9 @@ fputs($logdatei, /* enthält das Datum und die Uhrzeit */
     ", " . $_SERVER['REQUEST_METHOD'] . /* mithilfe von "," wird es getrennt und gewährleistet das Programme wie Acces oder Excel es einlesen können
     mit HTTP User Agent werden Informationen über den Browser und die Seite gesammelt
     mit \n wird ein Absatz hinzugefügt */
-    ", " . $_SERVER['HTTP_USER_AGENT'] . "\n");
+    ", " . $_SERVER['HTTP_USER_AGENT'] .
+    /*  */
+    ", " . $_SERVER["SCRIPT_FILENAME"]. "\n");
 
 /* schließt die Datei wieder */
 fclose($logdatei);
