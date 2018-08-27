@@ -1,17 +1,68 @@
 <?php
-/* die Serverdaten werden in der Datei logfile.txt gespeichert
-mit der Funktion fopen wird die Datei geöffnet und in den entsprechenden Modus versetzt (a = append (hinzufügen)) */
-$logdatei = fopen("logfile.txt", "a");
-/* in der geöffneten Datei wird mit fputs() eine zeichenfolge geschrieben (Inhalt lies untere Kommentare */
-fputs($logdatei, /* enthält das Datum und die Uhrzeit */
-    date("d.m.Y, H:i:s", time()) . /* mithilfe von "," wird es getrennt und gewährleistet das Programme wie Acces oder Excel es einlesen können
-    mit Request Mode wird dei Art der Anfrage angezeigt */
-    ", " . $_SERVER['REQUEST_METHOD'] . /* mithilfe von "," wird es getrennt und gewährleistet das Programme wie Acces oder Excel es einlesen können
-    mit HTTP User Agent werden Informationen über den Browser und die Seite gesammelt
-    mit \n wird ein Absatz hinzugefügt */
-    ", " . $_SERVER['HTTP_USER_AGENT'] .
-    /*  */
-    ", " . $_SERVER["SCRIPT_FILENAME"]. "\n");
+$uploaddir = './uploads/';
+$uploadfile = $uploaddir . basename($_FILES['bild']['name']);
+$pathArray = pathinfo($uploadfile);
+$extension = $pathArray['extension'];
+$allowedExtensions = array('png', 'jpeg', 'jpg', 'gif');
 
-/* schließt die Datei wieder */
-fclose($logdatei);
+function logMessage()
+{
+    $problem = "Hier steht eine Fehlermeldung";
+    $Logfile = fopen("logfile.txt", "a");
+    fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $problem . "\r\n"));
+    fclose($Logfile);
+}
+
+if (!file_exists($uploaddir)) {
+    function logMessage1()
+    {
+        $Existsproblem = "Dieser Ordner existiert nicht";
+        $Logfile = fopen("logfile.txt", "a");
+        fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $Existsproblem . "\r\n"));
+        fclose($Logfile);
+    }
+}
+
+
+if (!is_writable($uploaddir)) {
+    function logMessage2()
+    {
+        $Writeproblem = "Dieser Ordner ist nicht beschreibbar";
+        $Logfile = fopen("logfile.txt", "a");
+        fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $Writeproblem . "\r\n"));
+        fclose($Logfile);
+    }
+}
+
+
+if (!is_readable($uploaddir)) {
+    function logMessage3()
+    {
+        $Readproblem = "Dieser Ordner ist nicht lesbar";
+        $Logfile = fopen("logfile.txt", "a");
+        fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $Readproblem . "\r\n"));
+        fclose($Logfile);
+    }
+}
+
+
+if (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
+    function logMessage4()
+    {
+        $Moveproblem = "Datei konnte nicht verschoben werden";
+        $Logfile = fopen("logfile.txt", "a");
+        fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $Moveproblem . "\r\n"));
+        fclose($Logfile);
+    }
+}
+
+
+if (!in_array($extension, $allowedExtensions)) {
+    function logMessage5()
+    {
+        $Extensionsproblem = "Es wurde eine falsche Dateiendung verwendet ";
+        $Logfile = fopen("logfile.txt", "a");
+        fputs($Logfile, "\n" . date("d.m.Y, H:i:s", time()) . ", " . fwrite($Logfile, "\r\n" . $Extensionsproblem . "\r\n"));
+        fclose($Logfile);
+    }
+}

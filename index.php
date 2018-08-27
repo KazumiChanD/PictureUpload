@@ -29,11 +29,9 @@
     </header>
     <section>
         <!-- soll nur ein Platzhalter -->
-        <p> Lorem ipsum dolor sit amet, aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
-            ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-            kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum </p>
+        <p> Hier kannst DU deine Lieblingstiere, oder sogar DEINE Haustiere in DEINER eigenen Galerie einfügen.
+            DU kannst DEINE Bilder beliebig umbenennen und mit den Pfeilen wechseln. Bitte verwende nur das Deutsche
+            Alphabet und die vorgegebenen Formate wie unten aufgeführt. </p>
         <!-- zeigt auf der rechten Seite der Website, durch der definition in css, das Bild an -->
         <img id="rechts" src="https://i.imgur.com/X4KPi3Y.png" alt="Hier soll eigentlich ein Hund sein"/>
         <!-- zeigt auf der linken Seite der Website, durch der Definition in css, das Bild an -->
@@ -47,6 +45,7 @@
     <section>
         <!-- das Formular und die Daten werden an die save.php datei versendet und dort weiter verarbeitet -->
         <form action="save.php" method="post" name="datei" enctype="multipart/form-data">
+
             <!-- dieser Text steht vor dem Eingabefeld -->
             <label>Titel des Bildes:</label>
             <label>
@@ -64,14 +63,14 @@
         <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
         <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
         <?php if (array_key_exists('wrongExtension', $_GET)) { ?>
-            <p>Datei wurde nicht gespeichert, weil die Endung falsch ist</p>
+            <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!  <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
         <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
         <?php if (array_key_exists('saveError', $_GET)) { ?>
-            <p>Datei konnte nicht gespeichert werden!</p>
+            <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält besondere Zeichen bzw. Buchstaben. <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
         <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
-        <?php if (array_key_exists('saveOK', $_GET)) { ?>
+        <?php if (array_key_exists('OK', $_GET)) { ?>
             <p>Datei erfolgreich gespeichert</p>
         <?php } ?>
         <!-- hier werden die Bilder in einer ungeordneten Liste angezeigt -->
