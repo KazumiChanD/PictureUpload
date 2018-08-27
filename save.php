@@ -1,12 +1,14 @@
 <?php
+include_once('logfile.php');
+
 /* damit werden alle Fehler angezeigt */
 error_reporting(E_ALL);
-ini_set('display_errors', 'OFF');
+ini_set('display_errors', 'on');
 /* gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable */
-$uploaddir = 'uploads';
+$uploaddir = './uploads/';
 /* es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus */
-if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir)) {
 
+if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir)) {
     /* das gibt aus dem Verzeichnis, mit den ids aus der index.php, Dateiart und Dateiname einer Datei raus */
     $uploadfile = $uploaddir . basename($_FILES['bild']['name']);
     /* gibt den Dateipfad wieder */
@@ -16,30 +18,29 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     /* es wird nach der Dateiendung gesucht und wenn eine davon existiert, wird es weiter verarbeitet */
     $allowedExtensions = array('png', 'jpeg', 'jpg', 'gif');
     /* wird keine der Dateiendungen gefunden, wird auf eine andere Seite verwiesen */
+
     if (!in_array($extension, $allowedExtensions)) {
         /* und es wird auf die andere Seite verwiesen */
-        header('Location: index.php?wrongExtension=1');
-        exit;
-    }
-    /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen */
-    if (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
+        logMessage('Es wurde eine falsche Dateiendung verwendet.');
+        $param = 'wrongExtension=1';
+    } elseif (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
+        /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen */
+        // und es wird auf die andere Seite verwiesen */
+        logMessage('Die Datei konnte nicht gespeichert werden.');
+        $param = 'saveError=1';
+    } else {
+        /* wird die hochgeladene Datei verschoben, wird auf eine andere seite verwiesen */
         /* und es wird auf die andere Seite verwiesen */
-        header('Location: index.php?saveError=1');
-        exit;
+        logMessage('Es wurde erfolgreich gespeichert.', 'successUpload.log');
+        $param = 'OK=1';
     }
-    /* wird die hochgeladene Datei verschoben, wird auf eine andere seite verwiesen */
-
-    if (move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
-        /* und es wird auf die andere Seite verwiesen */
-        header('Location: index.php?OK=1');
-        exit;
-    }
-    if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir) && (move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile))) {
-            header('Location: index.php?OK=1');
-            exit;
-
-    }
-    header('Location: index.php?OK=1');
-    exit;
+} else {
+    //Schreibe Fehlermeldung in die Logdatei
+    logMessage('Der Ordner zum speichern ist nicht erreichbar.');
 }
 
+/**
+ * Zum Prüfen ob eine URL durch eine Quelle erzeugt wurde muss man den Referrer prüfen
+ */
+
+header('Location: index.php?' . $param);
