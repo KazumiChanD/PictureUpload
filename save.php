@@ -1,18 +1,25 @@
 <?php
 session_start();
-include_once('logfile.php');
-
-/* damit werden alle Fehler angezeigt */
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
+include_once('logfile.php');
 
-if (!array_key_exists('bild', $_FILES)) {
-    header('Location: /index.php');
+if ($_SESSION == 'index') {
+
+        $_SESSION['CurrentSite'] = 'save';
+
 }
+        else {
+            header('Location: index.php?dontDoIt');
+        };
+
+
+
+/* damit werden alle Fehler angezeigt */
+
 
 /* gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable */
 $uploaddir = './uploads/';
-
 /* es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus */
 
 if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir)) {
@@ -29,17 +36,17 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     if (!in_array($extension, $allowedExtensions)) {
         /* und es wird auf die andere Seite verwiesen */
         logMessage('Es wurde eine falsche Dateiendung verwendet.');
-        $_SESSION['wrongExtension'] = true;
+        $param = 'wrongExtension=1';
     } elseif (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
         /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen */
         // und es wird auf die andere Seite verwiesen */
         logMessage('Die Datei konnte nicht gespeichert werden.');
-        $_SESSION['saveError'] = true;
+        $param = 'saveError=1';
     } else {
         /* wird die hochgeladene Datei verschoben, wird auf eine andere seite verwiesen */
         /* und es wird auf die andere Seite verwiesen */
         logMessage('Es wurde erfolgreich gespeichert.', 'successUpload.log');
-        $_SESSION['saveOK'] = true;
+        $param = 'saveOK=1';
     }
 } else {
     //Schreibe Fehlermeldung in die Logdatei
@@ -47,4 +54,4 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
 };
 
 
-header('Location: index.php');
+header('Location: index.php?' . $param);

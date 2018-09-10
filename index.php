@@ -5,6 +5,18 @@ include_once('logfile.php');
 /* damit werden alle Fehler angezeigt */
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
+
+
+
+if ($_SESSION !== 'save') {
+
+    $_SESSION['CurrentSite'] = 'save';
+
+}
+else {
+    echo 'Du hast Scheiße gebaut';
+    die;
+};
 ?>
 
 <!DOCTYPE html>
@@ -64,16 +76,20 @@ ini_set('display_errors', 'on');
     </section>
     <section>
         <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_SESSION Parameter ausgewertet -->
-        <?php if (array_key_exists('wrongExtension', $_SESSION)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
+        <?php if (array_key_exists('dontDoIt', $_GET)) { ?>
+            <p>Du hast versucht selbst die Seite zu öffnen. Versuche es lieber hier rüber noch einmal: <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
+        <?php } ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
+        <?php if (array_key_exists('wrongExtension', $_GET)) { ?>
             <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!  <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_SESSION Parameter ausgewertet -->
-        <?php if (array_key_exists('saveError', $_SESSION)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
+        <?php if (array_key_exists('saveError', $_GET)) { ?>
             <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält besondere Zeichen bzw. Buchstaben. <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_SESSION Parameter ausgewertet -->
-        <?php if (array_key_exists('saveOK', $_SESSION)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
+        <?php if (array_key_exists('saveOK', $_GET)) { ?>
             <p>Datei erfolgreich gespeichert</p>
         <?php } ?>
         <!-- hier werden die Bilder in einer ungeordneten Liste angezeigt -->
@@ -116,9 +132,4 @@ ini_set('display_errors', 'on');
 </body>
 
 </html>
-<?php
 
-// löscht die Session Variablen wieder, das beim nächsten Aufrufen der Seite diese nicht mehr angezeigt werden, sondern erst wieder beim auslösen
-unset($_SESSION['wrongExtension']);
-unset($_SESSION['saveError']);
-unset($_SESSION['saveOK']);
