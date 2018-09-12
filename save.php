@@ -1,22 +1,17 @@
 <?php
 session_start();
+/* damit werden alle Fehler angezeigt */
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 include_once('logfile.php');
-
-if ($_SESSION == 'index') {
-
-        $_SESSION['CurrentSite'] = 'save';
-
+/* wenn man von der index.php kommt, wird der Session die save.php zugewiesen, wenn nicht, wird der Parameter abgeschickt und eine logMessage abgesendet */
+if ($_SESSION['Camefrom'] == 'index.php') {
+    $_SESSION['Camefrom'] = 'save.php';
 }
-        else {
-            header('Location: index.php?dontDoIt');
-        };
-
-
-
-/* damit werden alle Fehler angezeigt */
-
+else {
+    logMessage('Es wurde nicht über die index.php aufgerufen');
+    $param = 'dontDoIt=1';
+}
 
 /* gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable */
 $uploaddir = './uploads/';
@@ -52,6 +47,5 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     //Schreibe Fehlermeldung in die Logdatei
     logMessage('Der Ordner zum speichern ist nicht erreichbar.');
 };
-
 
 header('Location: index.php?' . $param);

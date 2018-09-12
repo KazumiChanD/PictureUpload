@@ -5,18 +5,25 @@ include_once('logfile.php');
 /* damit werden alle Fehler angezeigt */
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
-
-
-
-if ($_SESSION !== 'save') {
-
-    $_SESSION['CurrentSite'] = 'save';
-
+/* wenn man neu auf die Seite kommt, ohne das eine Session existiert, wird eine gesetzt */
+if (!array_key_exists('Camefrom', $_SESSION)) {
+    $_SESSION['Camefrom'] = 'index.php';
+}
+/* wenn camefrom in der Session und diese auch save.php aufweist, wird in einer Variable true gesetzt */
+if (array_key_exists('Camefrom', $_SESSION) && $_SESSION['Camefrom'] == 'save.php') {
+    $cameFromSave = true;
 }
 else {
-    echo 'Du hast Scheiße gebaut';
-    die;
-};
+    $cameFromSave = false;
+}
+/* wenn camefromsave ein false enthält und einen der drei Get parameter beitzt, wird man zu der Seite mit dem parameter dontdoit geschickt */
+if (!$cameFromSave) {
+    if (array_key_exists('saveOK', $_GET) || array_key_exists('wrongExtension', $_GET) || array_key_exists('saveError', $_GET)) {
+        header("Location: index.php?dontDoIt=1");
+        exit();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -74,22 +81,29 @@ else {
         </form>
 
     </section>
+    <?php
+    /* wenn die Session nicht save.php aufweist, wird eine logMessage ausgelöst */
+    if ($_SESSION['Camefrom'] != 'save.php') {
+        logMessage('Es wurde nicht über die save.php aufgerufen');
+    }
+
+    ?>
     <section>
         <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
-        <?php if (array_key_exists('dontDoIt', $_GET)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde, gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom false ist -->
+        <?php if (array_key_exists('dontDoIt', $_GET) and !$cameFromSave) { ?>
             <p>Du hast versucht selbst die Seite zu öffnen. Versuche es lieber hier rüber noch einmal: <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
-        <?php if (array_key_exists('wrongExtension', $_GET)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde, gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+        <?php if (array_key_exists('wrongExtension', $_GET) and $cameFromSave) { ?>
             <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!  <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
-        <?php if (array_key_exists('saveError', $_GET)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde, gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+        <?php if (array_key_exists('saveError', $_GET) and $cameFromSave) { ?>
             <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält besondere Zeichen bzw. Buchstaben. <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button></a></p>
         <?php } ?>
-        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde und gleichzeitig wird der $_GET Parameter ausgewertet -->
-        <?php if (array_key_exists('saveOK', $_GET)) { ?>
+        <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde, gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+        <?php if (array_key_exists('saveOK', $_GET) and $cameFromSave) { ?>
             <p>Datei erfolgreich gespeichert</p>
         <?php } ?>
         <!-- hier werden die Bilder in einer ungeordneten Liste angezeigt -->
@@ -133,3 +147,5 @@ else {
 
 </html>
 
+<?php
+$_SESSION['Camefrom'] = 'index.php';
