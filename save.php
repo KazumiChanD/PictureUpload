@@ -7,8 +7,7 @@ include_once('logfile.php');
 /* wenn man von der index.php kommt, wird der Session die save.php zugewiesen, wenn nicht, wird der Parameter abgeschickt und eine logMessage abgesendet */
 if ($_SESSION['Camefrom'] == 'index.php') {
     $_SESSION['Camefrom'] = 'save.php';
-}
-else {
+} else {
     logMessage('Es wurde nicht über die index.php aufgerufen');
     $param = 'dontDoIt=1';
 }
