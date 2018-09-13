@@ -77,7 +77,7 @@ if (!$cameFromSave) {
                 <!-- erstellt ein Button indem der Benutzer eine Datei auswählen muss -->
                 <input type="file" accept="image/*" name="bild" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
-                <button type="submit" value="Submit">Bild abschicken</button>
+                <button type="submit" value="Submit" disabled>Bild abschicken</button>
             </form>
 
         </section>
@@ -124,7 +124,7 @@ if (!$cameFromSave) {
 
                         ?>
                         <!-- erzeugt eine geordnetete Liste -->
-                        <li>
+                        <li id="picture">
                             <!-- beim klicken auf das Bild, öffnet sich ein Link wo das Bild (mit Name und Größe des Bildes in der Taskleiste) angezeigt wird  -->
                             <a href="<?php echo $bildinfo['dirname'] . "/" . $bildinfo['basename']; ?>">
                                 <!-- zeigt das Bild in der angegebenen Größe an -->
