@@ -41,6 +41,7 @@ if (!$cameFromSave) {
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
         <!-- damit wird die css eingebunden und in der Website auch dargestellt -->
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+        <script src="/resources/js/disabled2.js"></script>
     </head>
     <body>
     <!-- schließt den scollbereich ein, welcher in css definiert wurde -->
@@ -66,18 +67,18 @@ if (!$cameFromSave) {
         <!-- ein neuer Abschnitt für das Formular -->
         <section>
             <!-- das Formular und die Daten werden an die save.php datei versendet und dort weiter verarbeitet -->
-            <form action="save.php" method="post" name="datei" enctype="multipart/form-data">
+            <form action="save.php" method="post" name="Formular" enctype="multipart/form-data">
 
                 <!-- dieser Text steht vor dem Eingabefeld -->
                 <label>Titel des Bildes:</label>
                 <label>
                     <!-- das Eingabefeld was ausgefüllt werden muss und maximal nur 100 Zeichen erlaubt -->
-                    <input type="text" name="beschreibung" maxlength="100" required>
+                    <input type="text" name="beschreibung" id="Beschreibung" maxlength="100" value="" onblur="check(this)" required>
                 </label>
                 <!-- erstellt ein Button indem der Benutzer eine Datei auswählen muss -->
-                <input type="file" accept="image/*" name="bild" required><br>
+                <input type="file" accept="image/*" name="bild" id="Bild" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
-                <button type="submit" value="Submit" disabled>Bild abschicken</button>
+                <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
             </form>
 
         </section>
