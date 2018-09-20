@@ -73,10 +73,10 @@ if (!$cameFromSave) {
                 <label>Titel des Bildes:</label>
                 <label>
                     <!-- das Eingabefeld was ausgefüllt werden muss und maximal nur 100 Zeichen erlaubt -->
-                    <input type="text" name="beschreibung" id="Beschreibung" maxlength="100" value="" onblur="check(this)" required>
+                    <input type="text" name="beschreibung" id="Beschreibung" maxlength="100" value="" onblur="check()" required>
                 </label>
                 <!-- erstellt ein Button indem der Benutzer eine Datei auswählen muss -->
-                <input type="file" accept="image/*" name="bild" id="Bild" required><br>
+                <input type="file" accept="image/*" name="bild" id="Bild" value="" onblur="check()" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
                 <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
             </form>
