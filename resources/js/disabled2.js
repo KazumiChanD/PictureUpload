@@ -5,8 +5,10 @@ und der Button wird sofort wieder disabled */
 function check() {
     var submitButton = document.getElementById("Abschicken");
     submitButton.disabled = true;
-    console.log(document.getElementById("Bild"));
+    console.log(document.getElementById("Beschreibung"));
     if (document.getElementById("Beschreibung").value.length >= 1 && document.getElementById("Bild").value.length >= 1) {
         submitButton.disabled = false;
     }
 }
+
+addEventListener(check());
