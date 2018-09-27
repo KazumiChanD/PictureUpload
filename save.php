@@ -18,7 +18,7 @@ $uploaddir = './uploads/';
 $uploadtext = $_POST["beschreibung"];
 
 // Hier wird der Name und die Beschreibung in eine CSV Datei geschrieben
-$informationen = fopen("Bilddateiinformationen.csv", "a");
+$informationen = fopen("resources/log/Bilddateiinformationen.csv", "a");
 $filename = basename($_FILES['bild']['name']);
 fputs($informationen, $_POST["beschreibung"] . ";" . $filename . "\r\n");
 fclose($informationen);
@@ -47,7 +47,7 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     } else {
         /* wird die hochgeladene Datei verschoben, wird auf eine andere seite verwiesen
         und es wird auf die andere Seite verwiesen */
-        logMessage('Es wurde erfolgreich gespeichert.', 'successUpload.log');
+        logMessage('Es wurde erfolgreich gespeichert.', 'resources/log/successUpload.log');
         $param = 'saveOK=1';
     }
 } else {
