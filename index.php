@@ -121,7 +121,7 @@ if (!$cameFromSave) {
 
             <?php
             // Datei Datteiinformationen.csv öffnen
-            $handle = fopen("resources/log/Bilddateiinformationen.csv", 'r');
+            $handle = fopen("resources/dat/Bilddateiinformationen.csv", 'r');
             // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
             while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 // Gibt den Ordner an

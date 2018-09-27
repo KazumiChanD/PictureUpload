@@ -18,7 +18,7 @@ $uploaddir = './uploads/';
 $uploadtext = $_POST["beschreibung"];
 
 // Hier wird der Name und die Beschreibung in eine CSV Datei geschrieben
-$informationen = fopen("resources/log/Bilddateiinformationen.csv", "a");
+$informationen = fopen("resources/dat/Bilddateiinformationen.csv", "a");
 $filename = basename($_FILES['bild']['name']);
 fputs($informationen, $_POST["beschreibung"] . ";" . $filename . "\r\n");
 fclose($informationen);
