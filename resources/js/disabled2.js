@@ -1,6 +1,6 @@
-/* hier wird geprüft ob man was eingegeben hat in der Beschreibung und eine Datei ausgewählt wurde, wenn ja, wird beim raus klicken der
-Button Abschicken aktiviert, wenn beides nicht gegeben ist, (öffnet sich eine meldung / ist optional)
-und der Button wird sofort wieder disabled */
+/* hier wird geprüft ob man was eingegeben hat in der Beschreibung und eine Datei ausgewählt wurde, wenn ja, wird der
+Button Abschicken aktiviert, wenn beides nicht gegeben ist,
+wird der Button (wieder) disabled */
 
 function check() {
     var submitButton = document.getElementById("Abschicken");
@@ -11,4 +11,3 @@ function check() {
     }
 }
 
-addEventListener(check());

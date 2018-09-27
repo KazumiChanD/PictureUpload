@@ -1,4 +1,4 @@
-var ichhabkeinbockmehr = function check() {
+var check = function() {
     var Beschreibungvalue = document.getElementById("Beschreibung").value.length;
     var Bildvalue = document.getElementById("Bild").value.length;
     var submitButton = document.getElementById("Abschicken");
@@ -9,4 +9,4 @@ var ichhabkeinbockmehr = function check() {
     }
 };
 
-ichhabkeinbockmehr();
+check();

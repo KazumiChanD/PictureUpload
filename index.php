@@ -73,87 +73,83 @@ if (!$cameFromSave) {
                 <label>Titel des Bildes:</label>
                 <label>
                     <!-- das Eingabefeld was ausgefüllt werden muss und maximal nur 100 Zeichen erlaubt -->
-                    <input type="text" name="beschreibung" id="Beschreibung" maxlength="100" value="" onblur="check()" required>
+                    <input type="text" name="beschreibung" id="Beschreibung" maxlength="100" value="" onchange="check()"
+                           required>
                 </label>
                 <!-- erstellt ein Button indem der Benutzer eine Datei auswählen muss -->
-                <input type="file" accept="image/*" name="bild" id="Bild" value="" onblur="check()" required><br>
+                <input type="file" accept="image/*" name="bild" id="Bild" value="" onchange="check()" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
                 <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
             </form>
 
         </section>
         <section>
-            <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
-            <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
-            gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom false ist -->
-            <?php if (array_key_exists('dontDoIt', $_GET) and !$cameFromSave) { ?>
-                <p>Du hast versucht selbst die Seite zu öffnen. Versuche es lieber hier rüber noch einmal:
-                    <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
-                    </a></p>
-            <?php } ?>
-            <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
-            gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-            <?php if (array_key_exists('wrongExtension', $_GET) and $cameFromSave) { ?>
-                <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!
-                    <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
-                    </a></p>
-            <?php } ?>
-            <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
-            gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-            <?php if (array_key_exists('saveError', $_GET) and $cameFromSave) { ?>
-                <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält besondere
-                    Zeichen bzw. Buchstaben.
-                    <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
-                    </a></p>
-            <?php } ?>
-            <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
-            gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-            <?php if (array_key_exists('saveOK', $_GET) and $cameFromSave) { ?>
-                <p>Datei erfolgreich gespeichert</p>
-            <?php } ?>
-            <!-- hier werden die Bilder in einer ungeordneten Liste angezeigt -->
-            <ul id="galerie">
-
-                <?php
-                // gibt die nötige Information (Name und Dateipfad) über die Dateien im Ordner
-                $ordner = "./uploads/";
-                // liest den Ordner uploads aus und sortiert diesen
-                // $allebilder = scandir($ordner);
-                // dürchläuft eine Schleife
-
-
-                // Datei Datteiinformationen.csv öffnen
-                $handle = fopen("Bilddateiinformationen.csv", 'r');
-                // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
-                while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
-
-                    {
-                        // es wird verhindert das ordner und unterordner angezeigt werden
-                        $bildinfo = pathinfo($ordner . "/" . $csv_array[1]);
-                        $index = $ordner - $csv_array[1];
-                        if ($bildinfo != "." && $bildinfo != ".." && $bildinfo && $bildinfo['basename']) {
-                            ?>
-                            <li>
-                                <!-- beim klicken auf das Bild, öffnet sich ein Link wo das Bild
-                                (mit Name des Bildes in der Taskleiste) angezeigt wird  -->
-                                <a href="<?php echo $ordner . $csv_array[1]; ?>">
-                                    <!-- zeigt das Bild in der angegebenen Größe an -->
-                                    <img src="<?php echo $ordner . $csv_array[1]; ?>"
-                                         height="300px"/></a>
-                                <span><?php echo $csv_array[0] ?></span>
-                            </li>
-                            <?php
-
-                        }
-                    }
-                };
-                fclose($handle);
-
-                ?>
-
-            </ul>
+            <form>
+                <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
+                <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
+                gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom false ist -->
+                <?php if (array_key_exists('dontDoIt', $_GET) and !$cameFromSave) { ?>
+                    <p>Du hast versucht selbst die Seite zu öffnen. Versuche es lieber hier rüber noch einmal:
+                        <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
+                        </a></p>
+                <?php } ?>
+                <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
+                gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+                <?php if (array_key_exists('wrongExtension', $_GET) and $cameFromSave) { ?>
+                    <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!
+                        <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
+                        </a></p>
+                <?php } ?>
+                <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
+                gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+                <?php if (array_key_exists('saveError', $_GET) and $cameFromSave) { ?>
+                    <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält
+                        besondere
+                        Zeichen bzw. Buchstaben.
+                        <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
+                        </a></p>
+                <?php } ?>
+                <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
+                gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
+                <?php if (array_key_exists('saveOK', $_GET) and $cameFromSave) { ?>
+                    <p>Datei erfolgreich gespeichert</p>
+                <?php } ?>
+            </form>
         </section>
-        </div>
+        <!-- hier werden die Bilder in einer ungeordneten Liste angezeigt -->
+        <ul id="galerie">
+
+            <?php
+            // Datei Datteiinformationen.csv öffnen
+            $handle = fopen("Bilddateiinformationen.csv", 'r');
+            // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
+            while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
+                // Gibt den Ordner an
+                $ordner = "./uploads/";
+                $bildinfo = pathinfo($ordner . "/" . $csv_array[1]);
+                // es wird verhindert das ordner und unterordner angezeigt werden
+                if ($bildinfo != "." && $bildinfo != ".." && $bildinfo && $bildinfo['basename']) {
+                    ?>
+                    <li>
+                        <!-- beim klicken auf das Bild, öffnet sich ein Link wo das Bild
+                        (mit Name des Bildes in der Taskleiste) angezeigt wird  -->
+                        <a href="<?php echo $ordner . $csv_array[1]; ?>">
+                            <!-- zeigt das Bild in der angegebenen Größe an -->
+                            <img src="<?php echo $ordner . $csv_array[1]; ?>"
+                                 height="300px"/></a>
+                        <span><?php echo $csv_array[0] ?></span>
+                    </li>
+                    <?php
+
+                }
+
+            };
+            fclose($handle);
+
+            ?>
+
+        </ul>
+    </div>
     </body>
 
     </html>

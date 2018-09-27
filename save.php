@@ -54,5 +54,4 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     // Schreibe Fehlermeldung in die Logdatei
     logMessage('Der Ordner zum speichern ist nicht erreichbar.');
 };
-$uploadtextfile = $uploaddir . $uploadtext;
 header('Location: index.php?' . $param);
