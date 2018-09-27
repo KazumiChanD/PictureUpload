@@ -82,7 +82,7 @@ if (!$cameFromSave) {
                 <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
             </form>
             <form action="removePictures.php" method="post">
-                <button type="submit"  value="Submit" id="RemoveButton">Bilder löschen</button>
+                <button type="submit" value="Submit" id="RemoveButton">Bilder löschen</button>
             </form>
 
         </section>
@@ -129,23 +129,23 @@ if (!$cameFromSave) {
             while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 // Gibt den Ordner an
                 $ordner = "./uploads/";
-                $bildinfo = pathinfo($ordner . "/" . $csv_array[1]);
-                // es wird verhindert das ordner und unterordner angezeigt werden
-                if ($bildinfo != "." && $bildinfo != ".." && $bildinfo && $bildinfo['basename']) {
+                $bildpfad = $ordner . $csv_array[1];
+                $bildinfo = pathinfo($bildpfad);
+                $bildextension = pathinfo($bildpfad, PATHINFO_EXTENSION);
+                $bildsize = getimagesize($bildpfad);
+                $size = ceil(filesize($bildpfad) / 1024);
                     ?>
                     <li>
                         <!-- beim klicken auf das Bild, öffnet sich ein Link wo das Bild
                         (mit Name des Bildes in der Taskleiste) angezeigt wird  -->
-                        <a href="<?php echo $ordner . $csv_array[1]; ?>">
+                        <a href="<?php echo $bildpfad; ?>">
                             <!-- zeigt das Bild in der angegebenen Größe an -->
                             <img src="<?php echo $ordner . $csv_array[1]; ?>"
                                  height="300px"/></a>
-                        <span><?php echo $csv_array[0] ?></span>
+                        <span><?php echo " " . $csv_array[0] . " Dateityp: " . $bildextension . ", Breite: " . $bildsize[0] . ", Höhe: " . $bildsize[1] . ", Größe: " . $size . "kb" . ", " . $csv_array[2] ?></span>
                     </li>
+
                     <?php
-
-                }
-
             };
             fclose($handle);
 

@@ -17,10 +17,21 @@ if ($_SESSION['Camefrom'] == 'index.php') {
 $uploaddir = './uploads/';
 $uploadtext = $_POST["beschreibung"];
 
+/* legt die gewünschte Zeitzone fest, Erope ist Europa, Berlin die Zeitzone innerhalb von Deutschland */
+date_default_timezone_set("Europe/Berlin");
+/* gibt den aktuellen Zeitstempel (die Sekunden seit dem 1 Januar 1970 um 00:00 Uhr UTC (Schaltsekunden werden nicht mitgezählt) wird auch The Epoch genannt)) wieder */
+$timestamp = time();
+/* mit der Variable datum wird in dem Format Tag, Monat und Jahr, der Timestamp umgerechnet */
+$datum = date("d.m.Y",$timestamp);
+/* mit der Variable uhrzeit wird in dem Format Stunde, Minuten und Sekunden, der Timestamp umgerechnet */
+$uhrzeit = date("H:i:s",$timestamp);
+echo "$datum".' und '."$uhrzeit".' Uhr';
+
+
 // Hier wird der Name und die Beschreibung in eine CSV Datei geschrieben
 $informationen = fopen("resources/dat/Bilddateiinformationen.csv", "a");
 $filename = basename($_FILES['bild']['name']);
-fputs($informationen, $_POST["beschreibung"] . ";" . $filename . "\r\n");
+fputs($informationen, $_POST["beschreibung"] . ";" . $filename . ";" . $datum . ";" . $uhrzeit . "\r\n");
 fclose($informationen);
 
 // es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus
