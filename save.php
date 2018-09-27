@@ -40,6 +40,9 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
         logMessage('Es wurde eine falsche Dateiendung verwendet.');
         $param = 'wrongExtension=1';
     } elseif (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
+        // hier werden die Dateirechte erhöht
+        $ordner = 'uploads';
+        chmod($ordner,0777);
         /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen
         und es wird auf die andere Seite verwiesen */
         logMessage('Die Datei konnte nicht gespeichert werden.');

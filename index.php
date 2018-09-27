@@ -67,7 +67,7 @@ if (!$cameFromSave) {
         <!-- ein neuer Abschnitt für das Formular -->
         <section>
             <!-- das Formular und die Daten werden an die save.php datei versendet und dort weiter verarbeitet -->
-            <form action="save.php" method="post" name="Formular" id=Formular" enctype="multipart/form-data">
+            <form action="save.php" method="post" name="Formular" id="Formular" enctype="multipart/form-data">
 
                 <!-- dieser Text steht vor dem Eingabefeld -->
                 <label>Titel des Bildes:</label>
@@ -80,6 +80,9 @@ if (!$cameFromSave) {
                 <input type="file" accept="image/*" name="bild" id="Bild" value="" onchange="check()" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
                 <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
+            </form>
+            <form action="removePictures.php" method="post">
+                <button type="submit"  value="Submit" id="RemoveButton">Bilder löschen</button>
             </form>
 
         </section>
