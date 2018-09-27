@@ -32,7 +32,7 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     // es wird die endung von dem Dateipfad abgetrennt
     $extension = $pathArray['extension'];
     // es wird nach der Dateiendung gesucht und wenn eine davon existiert, wird es weiter verarbeitet
-    $allowedExtensions = array('png', 'jpeg', 'jpg', 'gif');
+    $allowedExtensions = array('png', 'jpeg', 'jpg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 
     // wird keine der Dateiendungen gefunden, wird auf eine andere Seite verwiesen
     if (!in_array($extension, $allowedExtensions)) {

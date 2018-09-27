@@ -41,7 +41,7 @@ if (!$cameFromSave) {
         <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
         <!-- damit wird die css eingebunden und in der Website auch dargestellt -->
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
-        <script src="/resources/js/disabled.js"></script>
+        <script src="/resources/js/enabledButton.js"></script>
     </head>
     <body>
     <!-- schließt den scollbereich ein, welcher in css definiert wurde -->
