@@ -45,7 +45,7 @@ if (!$cameFromSave) {
     </head>
     <body>
     <!-- schließt den scollbereich ein, welcher in css definiert wurde -->
-    <div id="scrollbereich">
+    <div>
         <header>
             <!-- gibt den sichtbaren Text als Überschrift aus -->
             <h2>Speicher hier die Bilder deiner Lieblinge</h2>
