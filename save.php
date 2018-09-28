@@ -25,7 +25,6 @@ $timestamp = time();
 $datum = date("d.m.Y",$timestamp);
 /* mit der Variable uhrzeit wird in dem Format Stunde, Minuten und Sekunden, der Timestamp umgerechnet */
 $uhrzeit = date("H:i:s",$timestamp);
-echo "$datum".' und '."$uhrzeit".' Uhr';
 
 
 // Hier wird der Name und die Beschreibung in eine CSV Datei geschrieben

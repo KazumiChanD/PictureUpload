@@ -8,11 +8,10 @@ function LoescheBilder() {
     while ($file = readdir($verzeichnis)) {
         // ignoriert die übergeordneten Ordner
         if ($file != "." && $file != "..") {
-            // löscht die Files
+            // löscht die Bilder
             unlink($uploaddir . $file);
-            // löscht die Eintrage in der csv und nicht die csv auch (ansonsten würde ein Fehler auf der Seite ausgelöst werden)
-            $openData = fopen("resources/dat/Bilddateiinformationen.csv", "w+");
-            fclose($openData);
+            // löscht die csv
+            unlink("resources/dat/Bilddateiinformationen.csv");
         }
     }
     //schließt das verzeichnis wieder

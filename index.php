@@ -56,12 +56,12 @@ if (!$cameFromSave) {
                 DU kannst DEINE Bilder beliebig umbenennen. <br> Bitte verwende nur das Deutsche
                 Alphabet und die vorgegebenen Formate wie unten aufgeführt. </p>
             <!-- zeigt auf der rechten Seite der Website, durch der definition in css, das Bild an -->
-            <img id="rechts" src="https://i.imgur.com/X4KPi3Y.png" alt="Hier soll eigentlich eine Katze sein"/>
+            <img id="rechts" src="bilder/Katze.png" alt="Hier soll eigentlich eine Katze sein"/>
             <!-- zeigt auf der linken Seite der Website, durch der Definition in css, das Bild an -->
-            <img id="links" src="http://ekladata.com/-WzPJzH8EGmgAJKt4VJ4mQp7boI.png"
+            <img id="links" src="bilder/Hund.png"
                  alt="Hier soll eigentlich ein Hund sein">
             <!-- zeigt unterhalb des Platzhalters auf der Website in der Mitte, durch der Definition in css, das Bild an -->
-            <img id="mitte" src="http://pluspng.com/img-png/hamster-png-hd-mouse-animal-free-png-image-1250.png"
+            <img id="mitte" src="bilder/Hamster.png"
                  alt="Hier soll eigentlich ein Hamster sein">
         </section>
         <!-- ein neuer Abschnitt für das Formular -->
@@ -123,8 +123,10 @@ if (!$cameFromSave) {
         <ul id="galerie">
 
             <?php
+            $csvfile = "resources/dat/Bilddateiinformationen.csv";
+            if (file_exists($csvfile) && is_readable($csvfile) && is_writeable($csvfile)) {
             // Datei Datteiinformationen.csv öffnen
-            $handle = fopen("resources/dat/Bilddateiinformationen.csv", 'r');
+            $handle = fopen($csvfile, 'r');
             // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
             while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 // Gibt den Ordner an
@@ -134,6 +136,7 @@ if (!$cameFromSave) {
                 $bildextension = pathinfo($bildpfad, PATHINFO_EXTENSION);
                 $bildsize = getimagesize($bildpfad);
                 $size = ceil(filesize($bildpfad) / 1024);
+
                     ?>
                     <li>
                         <!-- beim klicken auf das Bild, öffnet sich ein Link wo das Bild
@@ -146,8 +149,10 @@ if (!$cameFromSave) {
                     </li>
 
                     <?php
+
             };
             fclose($handle);
+            };
 
             ?>
 
