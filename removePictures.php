@@ -10,7 +10,9 @@ function LoescheBilder() {
         if ($file != "." && $file != "..") {
             // löscht die Files
             unlink($uploaddir . $file);
-            unlink("resources/dat/Bilddateiinformationen.csv");
+            // löscht die Eintrage in der csv und nicht die csv auch (ansonsten würde ein Fehler auf der Seite ausgelöst werden)
+            $openData = fopen("resources/dat/Bilddateiinformationen.csv", "w+");
+            fclose($openData);
         }
     }
     //schließt das verzeichnis wieder
