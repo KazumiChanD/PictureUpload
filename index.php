@@ -124,18 +124,18 @@ if (!$cameFromSave) {
 
             <?php
             $csvfile = "resources/dat/Bilddateiinformationen.csv";
-            if (file_exists($csvfile) && is_readable($csvfile) && is_writeable($csvfile)) {
-            // Datei Datteiinformationen.csv öffnen
-            $handle = fopen($csvfile, 'r');
-            // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
-            while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
-                // Gibt den Ordner an
-                $ordner = "./uploads/";
-                $bildpfad = $ordner . $csv_array[1];
-                $bildinfo = pathinfo($bildpfad);
-                $bildextension = pathinfo($bildpfad, PATHINFO_EXTENSION);
-                $bildsize = getimagesize($bildpfad);
-                $size = ceil(filesize($bildpfad) / 1024);
+            if (file_exists($csvfile) && is_readable($csvfile)) {
+                // Datei Datteiinformationen.csv öffnen
+                $handle = fopen($csvfile, 'r');
+                // Fängt eine Schleife an, liest eine einzelne Zeile aus und speichert es im csv_array
+                while (($csv_array = fgetcsv($handle, 1000, ';')) !== FALSE) {
+                    // Gibt den Ordner an
+                    $ordner = "./uploads/";
+                    $bildpfad = $ordner . $csv_array[1];
+                    $bildinfo = pathinfo($bildpfad);
+                    $bildextension = pathinfo($bildpfad, PATHINFO_EXTENSION);
+                    $bildsize = getimagesize($bildpfad);
+                    $size = ceil(filesize($bildpfad) / 1024);
 
                     ?>
                     <li>
@@ -150,8 +150,8 @@ if (!$cameFromSave) {
 
                     <?php
 
-            };
-            fclose($handle);
+                };
+                fclose($handle);
             };
 
             ?>

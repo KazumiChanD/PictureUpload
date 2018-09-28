@@ -22,9 +22,9 @@ date_default_timezone_set("Europe/Berlin");
 /* gibt den aktuellen Zeitstempel (die Sekunden seit dem 1 Januar 1970 um 00:00 Uhr UTC (Schaltsekunden werden nicht mitgezählt) wird auch The Epoch genannt)) wieder */
 $timestamp = time();
 /* mit der Variable datum wird in dem Format Tag, Monat und Jahr, der Timestamp umgerechnet */
-$datum = date("d.m.Y",$timestamp);
+$datum = date("d.m.Y", $timestamp);
 /* mit der Variable uhrzeit wird in dem Format Stunde, Minuten und Sekunden, der Timestamp umgerechnet */
-$uhrzeit = date("H:i:s",$timestamp);
+$uhrzeit = date("H:i:s", $timestamp);
 
 
 // Hier wird der Name und die Beschreibung in eine CSV Datei geschrieben
@@ -52,7 +52,7 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     } elseif (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
         // hier werden die Dateirechte erhöht
         $ordner = 'uploads';
-        chmod($ordner,0777);
+        chmod($ordner, 0777);
         /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen
         und es wird auf die andere Seite verwiesen */
         logMessage('Die Datei konnte nicht gespeichert werden.');

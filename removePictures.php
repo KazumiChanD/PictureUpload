@@ -1,6 +1,7 @@
 <?php
 // löscht die Bilder im Ordner
-function LoescheBilder() {
+function LoescheBilder()
+{
     $uploaddir = "uploads/";
     // öffnet das Verzeichnis wieder
     $verzeichnis = opendir($uploaddir);
