@@ -1,20 +1,21 @@
 <?php
-session_start();
 // damit werden alle Fehler angezeigt
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 include_once('logfile.php');
-// wenn man von der index.php kommt, wird der Session die save.php zugewiesen, wenn nicht, wird der Parameter abgeschickt und eine logMessage abgesendet
+include_once ('index.php');
+/* // wenn man von der index.php kommt, wird der Session die save.php zugewiesen, wenn nicht, wird der Parameter abgeschickt und eine logMessage abgesendet
 if ($_SESSION['Camefrom'] == 'index.php') {
     $_SESSION['Camefrom'] = 'save.php';
 } else {
     logMessage('Es wurde nicht über die index.php aufgerufen');
     $param = 'dontDoIt=1';
-}
+} */
+
 
 
 // gibt dem ordner wo die Bilder ausgelesen werden soll eine Variable
-$uploaddir = './uploads/';
+$uploaddir = 'uploads/';
 $uploadtext = $_POST["beschreibung"];
 
 /* legt die gewünschte Zeitzone fest, Erope ist Europa, Berlin die Zeitzone innerhalb von Deutschland */
@@ -33,6 +34,7 @@ $filename = basename($_FILES['bild']['name']);
 fputs($informationen, $_POST["beschreibung"] . ";" . $filename . ";" . $datum . ";" . $uhrzeit . "\r\n");
 fclose($informationen);
 
+
 // es wird überprüft ob das Verzeichnis existiert, ob es lesbar und beschreibbar ist und führt dann eine Anweisung aus
 if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddir)) {
     // das gibt aus dem Verzeichnis, mit den ids aus der index.php, Dateiart und Dateiname einer Datei raus
@@ -48,23 +50,22 @@ if (file_exists($uploaddir) && is_readable($uploaddir) && is_writeable($uploaddi
     if (!in_array($extension, $allowedExtensions)) {
         // und es wird auf die andere Seite verwiesen */
         logMessage('Es wurde eine falsche Dateiendung verwendet.');
-        $param = 'wrongExtension=1';
+        $param = ['wrongExtension'=>1];
     } elseif (!move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
         // hier werden die Dateirechte erhöht
         $ordner = 'uploads';
         chmod($ordner, 0777);
-        /* wird die hochgeladene Datei nicht verschoben, wird auf eine andere Seite verwiesen
-        und es wird auf die andere Seite verwiesen */
+        /* wird die hochgeladene Datei nicht verschoben, wird auf die andere Seite verwiesen */
         logMessage('Die Datei konnte nicht gespeichert werden.');
-        $param = 'saveError=1';
+        $param = ['saveError'=>2];
     } else {
-        /* wird die hochgeladene Datei verschoben, wird auf eine andere seite verwiesen
-        und es wird auf die andere Seite verwiesen */
+        /* wird die hochgeladene Datei verschoben, wird auf die andere Seite verwiesen */
         logMessage('Es wurde erfolgreich gespeichert.', 'resources/log/successUpload.log');
-        $param = 'saveOK=1';
+        $param = ['saveOK'=>3];
     }
 } else {
     // Schreibe Fehlermeldung in die Logdatei
     logMessage('Der Ordner zum speichern ist nicht erreichbar.');
 };
+json_encode($param);
 header('Location: index.php?' . $param);

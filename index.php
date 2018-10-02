@@ -1,10 +1,9 @@
 <?php
-session_start();
-
 include_once('logfile.php');
 // damit werden alle Fehler angezeigt
 error_reporting(E_ALL);
 ini_set('display_errors', 'on');
+/*
 // wenn man neu auf die Seite kommt, ohne das eine Session existiert, wird eine gesetzt
 if (!array_key_exists('Camefrom', $_SESSION)) {
     $_SESSION['Camefrom'] = 'index.php';
@@ -23,6 +22,7 @@ if (!$cameFromSave) {
         exit();
     }
 }
+*/
 
 ?>
 
@@ -42,6 +42,8 @@ if (!$cameFromSave) {
         <!-- damit wird die css eingebunden und in der Website auch dargestellt -->
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <script src="/resources/js/enabledButton.js"></script>
+        <script src="/resources/js/ajaxsave.js"></script>
+        <link rel="icon" href="/bilder/favicon.ico" type="image/x-icon">
     </head>
     <body>
     <!-- schließt den scollbereich ein, welcher in css definiert wurde -->
@@ -79,7 +81,7 @@ if (!$cameFromSave) {
                 <!-- erstellt ein Button indem der Benutzer eine Datei auswählen muss -->
                 <input type="file" accept="image/*" name="bild" id="Bild" value="" onchange="check()" required><br>
                 <!-- erstellt einen Button mit dem das Formular abgesendet wird -->
-                <button type="submit" id="Abschicken" value="Submit" disabled>Bild abschicken</button>
+                <button id="Abschicken" value="Test" disabled onclick="saveFormular()">Bild abschicken</button>
             </form>
             <form action="removePictures.php" method="post">
                 <button type="submit" value="Submit" id="RemoveButton">Bilder löschen</button>
@@ -91,21 +93,21 @@ if (!$cameFromSave) {
                 <p>Es sind nur Formate wie .jpg, .jpeg .gif und .png gültig</p>
                 <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
                 gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom false ist -->
-                <?php if (array_key_exists('dontDoIt', $_GET) and !$cameFromSave) { ?>
+                <?php if (array_key_exists('dontDoIt', $_GET) /*and !$cameFromSave*/) { ?>
                     <p>Du hast versucht selbst die Seite zu öffnen. Versuche es lieber hier rüber noch einmal:
                         <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
                         </a></p>
                 <?php } ?>
                 <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
                 gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-                <?php if (array_key_exists('wrongExtension', $_GET) and $cameFromSave) { ?>
+                <?php if (array_key_exists('wrongExtension', $_GET) /*and $cameFromSave*/ ) { ?>
                     <p>Datei wurde nicht gespeichert, weil die Endung falsch ist!
                         <button type="submit" value="submit"><a href="index.php">Neuer Versuch</button>
                         </a></p>
                 <?php } ?>
                 <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
                 gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-                <?php if (array_key_exists('saveError', $_GET) and $cameFromSave) { ?>
+                <?php if (array_key_exists('saveError', $_GET) /*and $cameFromSave*/) { ?>
                     <p>Datei konnte nicht gespeichert werden! Eventuell ist es ein falsches Format oder enthält
                         besondere
                         Zeichen bzw. Buchstaben.
@@ -114,7 +116,7 @@ if (!$cameFromSave) {
                 <?php } ?>
                 <!-- das was innerhalb vom p tag steht, wird nur angezeigt, wenn im Array der String gefunden wurde,
                 gleichzeitig wird der $_GET Parameter ausgewertet und geprüft ob die camefrom true ist -->
-                <?php if (array_key_exists('saveOK', $_GET) and $cameFromSave) { ?>
+                <?php if (array_key_exists('saveOK', $_GET) /*and $cameFromSave*/) { ?>
                     <p>Datei erfolgreich gespeichert</p>
                 <?php } ?>
             </form>
@@ -163,4 +165,3 @@ if (!$cameFromSave) {
     </html>
 
 <?php
-$_SESSION['Camefrom'] = 'index.php';

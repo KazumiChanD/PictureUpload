@@ -11,9 +11,7 @@ h2 {
 }
 
 body {
-    background: url("/bilder/Ichversuchs2.png") fixed repeat;
-    background-color: #ffebcc;
-    background-attachment: scroll;
+    background: #e6a450 url("/bilder/Ichversuchs2.png") repeat scroll;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -30,7 +28,6 @@ li {
     height: auto;
     margin-left: 20px;
 }
-
 
 #links {
     float: left;
